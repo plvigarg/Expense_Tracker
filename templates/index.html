@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../assets/css/styles.css" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -151,7 +151,7 @@
         <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                    <h2 class="section-heading text-uppercase">Our Team</h2>
                     <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
                     <br>
                 </div>
@@ -273,24 +273,25 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="POST">
+                            {{logForm.hidden_tag()}}
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="staticEmail" >
+                                    {{logForm.email(class='form-control')}}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword">
+                                    {{logForm.password(class='form-control')}}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Log In</button>
+                        {{logForm.submit(class="btn btn-primary")}}
                     </div>
                 </div>
             </div>
@@ -309,36 +310,42 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group row">
+                        <form method="POST">
+                            {{signForm.hidden_tag()}}
+                              <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="staticEmail">
+                                    <!-- <input type="text" class="form-control" id="staticEmail"> -->
+                                    {{signForm.username(class='form-control')}}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="staticEmail">
+                                    <!-- <input type="text" class="form-control" id="staticEmail"> -->
+                                    {{signForm.email(class="form-control")}}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword">
+                                    <!-- <input type="password" class="form-control" id="inputPassword"> -->
+                                    {{signForm.password(class='form-control')}}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Confirm Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword">
+                                    <!-- <input type="password" class="form-control" id="inputPassword"> -->
+                                    {{signForm.pass_confirm(class='form-control')}}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Sign Up</button>
+                        <!-- <button type="button" class="btn btn-primary">Sign Up</button> -->
+                        {{signForm.submit(class='btn btn-primary')}}
                     </div>
                 </div>
             </div>
@@ -354,6 +361,6 @@
         <script src="assets/mail/jqBootstrapValidation.js"></script>
         <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
-        <script src="../assets/js/scripts.js"></script>
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     </body>
 </html>

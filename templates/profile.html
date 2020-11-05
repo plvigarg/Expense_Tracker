@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/css1/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css1/style.css') }}">
 </head>
 
 <body>
@@ -21,19 +21,19 @@
                 <ul class="list-unstyled components mb-5">
 
                     <li>
-                        <a href="expense.html">Dashboard</a>
+                        <a href="{{url_for(dashboard)}}">Dashboard</a>
                     </li>
 
-                    <li>
-                        <a href="passbook.html">PassBook</a>
+                    <li >
+                        <a href="{{url_for(passbook)}}">PassBook</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="{{url_for(profile)}}">Profile</a>
                     </li>
                     
-
-                    <li  class="active">
-                        <a href="profile.html">Profile</a>
-                    </li>
                     <li>
-                        <a href="index.html">Sign Out</a>
+                        <a href="{{url_for(index)}}">Sign Out</a>
                     </li>
                 </ul>
 
@@ -86,10 +86,10 @@
 
 
 
-    <script src="../assets/js1/jquery.min.js"></script>
-    <script src="../assets/js1/popper.js"></script>
-    <script src="../assets/js1/bootstrap.min.js"></script>
-    <script src="../assets/js1/main.js"></script>
+    <script src="{{ url_for('static', filename='js1/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js1/popperjs') }}"></script>
+    <script src="{{ url_for('static', filename='js1/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js1/main.js') }}"></script>
 </body>
 
 </html>
