@@ -92,6 +92,29 @@
       <div class="modal-body">
         <form method="POST">
           {{transForm.hidden_tag()}}
+                    <div class="form-group row">
+            <div class="col-sm-10">
+              {% for subfield in transForm.flow %}
+              <tr >
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <td>{{ subfield }}</td>
+                    <td>{{ subfield.label }}</td>
+              </tr>
+              {% endfor %}
+            </div>
+          </div>
           <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Amount</label>
             <div class="col-sm-10">
@@ -102,18 +125,13 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
               {{transForm.description(class='form-control')}}
-
+          
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Date</label>
             <div class="col-sm-10">
               {{transForm.date(class='form-control')}}
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-10">
-              {{transForm.flow(class='form-control')}}
             </div>
           </div>
         </form>
