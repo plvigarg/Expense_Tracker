@@ -70,18 +70,50 @@
                 </div>
             </nav>
 
-            <!-- <h2 class="mb-4">Sidebar #01</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
-        </div> -->
+            <form method="POST">
+                {{proForm.hidden_tag()}}
+                <div class="form-group row" >
+                    
+                    <div  style="margin: 0 auto 0" >
+                        <label for="file-input">
+                           <img class="rounded-circle" height="150px" width="150px" src="../static/img/team/1.jpg" />
+                        </label>
+                        {{proForm.image(style="display:none;", id="file-input")}}
+                        
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        {{proForm.name(class='form-control')}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        {{proForm.email(class="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Income</label>
+                    <div class="col-sm-10">
+                        {{proForm.income(class='form-control')}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Budget</label>
+                    <div class="col-sm-10">
+                        {{proForm.budget(class='form-control')}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div style="margin:0 auto 0">
+                        {{proForm.submit(class='btn btn-dark')}}
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
 

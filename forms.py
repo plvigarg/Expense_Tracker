@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Email, EqualTo
 from flask_wtf.file import FileField, FileAllowed
 
 
-class profile(FlaskForm):
+class profiles(FlaskForm):
     name = StringField('Name')
     email = StringField('Email')
     image = FileField('Update Image', validators=[

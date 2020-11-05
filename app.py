@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, redirect, url_for
-from forms import loginForm, registrationForm, transactionForm
+from forms import loginForm, registrationForm, transactionForm, profiles
 app = Flask(__name__)
 
 
@@ -30,7 +30,8 @@ def passbook():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    return render_template('profile.html')
+    proForm = profiles()
+    return render_template('profile.html', proForm = proForm)
 
 
 if __name__ == '__main__':
