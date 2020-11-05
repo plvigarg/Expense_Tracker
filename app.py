@@ -28,7 +28,7 @@ def passbook():
     return render_template('passbook.html')
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
     return render_template('profile.html')
 
