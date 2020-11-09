@@ -92,23 +92,12 @@
       <div class="modal-body">
         <form method="POST">
           {{transForm.hidden_tag()}}
-                    <div class="form-group row">
+          <div class="form-group row">
             <div class="col-sm-10">
               {% for subfield in transForm.flow %}
               <tr >
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  
                     <td>{{ subfield }}</td>
                     <td>{{ subfield.label }}</td>
               </tr>
