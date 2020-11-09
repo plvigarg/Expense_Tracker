@@ -1,33 +1,15 @@
-import os
 from flask import Flask, render_template, session, redirect, url_for
-from forms import loginForm, registrationForm, transactionForm, profiles
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-app = Flask(__name__)
 
 
-app.config['SECRET_KEY'] = 'iceCream'
-
-# DATABASE
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
-    os.path.join(basedir, 'data.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
-db = SQLAlchemy(app)
-Migrate(app, db)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    LoginForm = loginForm()
-    RegistrationForm = registrationForm()
-    # if loginForm.validate_on_submit():
-    #
-    #
-    #
-    return render_template('index.html', logForm=LoginForm, signForm=RegistrationForm)
+
+
+
+
+
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
