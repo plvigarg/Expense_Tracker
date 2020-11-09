@@ -30,9 +30,9 @@ class registrationForm(FlaskForm):
         'Confirm Password', validators=[DataRequired()])
     submit = SubmitField('Register')
 
-    # def check_email(self, field):
-    #     if User.query.filter_by(email=field.data).first():
-    #         raise ValidationError('Your email has been registered already!')
+    def check_email(self, field):
+        if Users.query.filter_by(email=field.data).first():
+            raise ValidationError('Your email has been registered already!')
 
 
 class transactionForm(FlaskForm):
