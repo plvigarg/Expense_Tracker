@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, BooleanField, DateTimeField, RadioField, SelectField, PasswordField,
-                     TextField, TextAreaField, SubmitField, IntegerField, FileField, ValidationError, DateField)
-from wtforms.validators import DataRequired, Email, EqualTo
+                     TextField, TextAreaField, SubmitField, IntegerField, FileField, ValidationError, DateField, DecimalField)
+from wtforms.validators import DataRequired, Email, EqualTo, Required
 from flask_wtf.file import FileField, FileAllowed
+from categories import cats
 
 
 class profiles(FlaskForm):
@@ -36,9 +37,12 @@ class registrationForm(FlaskForm):
 
 
 class transactionForm(FlaskForm):
-    amount = IntegerField('Amount', validators=[DataRequired()])
-    date = DateField('Date of Transaction', validators=[DataRequired()])
+    amount = DecimalField('Amount', validators=[DataRequired()])
+    date = DateField('Date of Transaction', validators=[
+                     DataRequired()], format='%d/%m/%Y', render_kw={'placeholder': '20/6/15 for June 20, 2015'})
     description = TextField('Description', validators=[DataRequired()])
-    flow = RadioField('', choices=[
-                      ('debit', 'Cash In'), ('credit', 'Cash Out')], validators=[DataRequired()])
+    flow = RadioField('', coerce=bool, choices=[
+                      (True, 'Cash In'), (False, 'Cash Out')], validators=[Required()])
     submit = SubmitField('Add Transaction')
+    category = SelectField(
+        u'Category', choices=cats, validators=[Required()])

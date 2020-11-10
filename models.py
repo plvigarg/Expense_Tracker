@@ -19,13 +19,17 @@ class Users(db.Model, UserMixin):
     # pasword = db.Column(db.String(128))
     # posts = db.relationship('BlogPost', backref='author', lazy=True)
 
-    # def _init_(self, email, name, password):
-    #     self.email = email
-    #     self.name = name
-    #     self.pasword_hash = password
-
     def check_password(self, password):
         return check_password_hash(self.pasword_hash, password)
 
     def _repr_(self):
         return f"Username {self.username}"
+
+class Transactions(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    cashFlow = db.Column(db.Boolean)
+    amount = db.Column(db.Numeric(10,2))
+    description = db.Column(db.String(64))
+    date = db.Column(db.DateTime)
+    
