@@ -29,7 +29,11 @@ class Transactions(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     cashFlow = db.Column(db.Boolean)
-    amount = db.Column(db.Numeric(10,2))
+    amount = db.Column(db.Integer)
     description = db.Column(db.String(64))
+    cat=db.Column(db.String(64))
     date = db.Column(db.DateTime)
+
+    def _repr_(self):
+        return f"amount {self.amount}"
     

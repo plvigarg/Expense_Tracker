@@ -37,12 +37,12 @@ class registrationForm(FlaskForm):
 
 
 class transactionForm(FlaskForm):
-    amount = DecimalField('Amount', validators=[DataRequired()])
+    amount = IntegerField('Amount', validators=[DataRequired()])
     date = DateField('Date of Transaction', validators=[
                      DataRequired()], format='%d/%m/%Y', render_kw={'placeholder': '20/6/15 for June 20, 2015'})
     description = TextField('Description', validators=[DataRequired()])
     flow = RadioField('', coerce=bool, choices=[
-                      (True, 'Cash In'), (False, 'Cash Out')], validators=[Required()])
+                      (True, 'Cash In'), (False, 'Cash Out')], validators=[DataRequired()])
     submit = SubmitField('Add Transaction')
     category = SelectField(
-        u'Category', choices=cats, validators=[Required()])
+        u'Category', choices=cats, validators=[DataRequired()])

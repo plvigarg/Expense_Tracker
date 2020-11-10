@@ -43,6 +43,18 @@ def index():
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     transForm = transactionForm()
+
+    if transForm.validate_on_submit():
+        print("In form")
+        data = Transactions(cashFlow=transForm.flow.data,
+                     amount=transForm.amount.data, description=transForm.description.data,cat=transForm.category.data,date=transForm.date.data)
+
+        db.session.add(data)
+        db.session.commit()
+        # flash()
+        print("data send")
+        return redirect(url_for('dashboard'))
+
     return render_template('dashboard.html', transForm=transForm)
 
 

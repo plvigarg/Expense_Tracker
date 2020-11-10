@@ -137,12 +137,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        {{transForm.submit(class="btn btn-primary",form="transactionform")}}
+        {{transForm.submit(class="btn btn-primary",form="transactionform",id="trans",onsubmit="alert('thank you')")}}
       </div>
     </div>
   </div>
 </div>
-
 
     <script src="{{ url_for('static', filename='js1/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js1/popperjs') }}"></script>
