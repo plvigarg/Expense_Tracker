@@ -19,10 +19,10 @@ class Users(db.Model, UserMixin):
     # pasword = db.Column(db.String(128))
     # posts = db.relationship('BlogPost', backref='author', lazy=True)
 
-    def _init_(self, email, name, password):
-        self.email = email
-        self.name = name
-        self.pasword_hash = password
+    # def _init_(self, email, name, password):
+    #     self.email = email
+    #     self.name = name
+    #     self.pasword_hash = password
 
     def check_password(self, password):
         return check_password_hash(self.pasword_hash, password)

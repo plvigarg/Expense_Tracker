@@ -1,5 +1,5 @@
-from connect import app
-from flask import Flask, render_template, session, redirect, url_for
+from connect import app,db
+from flask import Flask, render_template, session, redirect, url_for,request
 from flask_login import login_user, logout_user, login_required, current_user
 from forms import loginForm, registrationForm, transactionForm, profiles
 from models import Users
@@ -16,7 +16,7 @@ def index():
         passw = generate_password_hash(RegistrationForm.password2.data)
 
         user = Users(email=RegistrationForm.email2.data,
-                     name=RegistrationForm.username2.data, password=passw)
+                     name=RegistrationForm.username2.data, pasword_hash=passw)
 
         db.session.add(user)
         db.session.commit()
@@ -29,7 +29,7 @@ def index():
         if user is not None and user.check_password(LoginForm.password1.data):
 
             login_user(user)
-            flash('Log in Success!')
+            # flash('Log in Success!')
 
             next = request.args.get('next')
 
