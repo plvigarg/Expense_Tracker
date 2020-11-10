@@ -16,19 +16,19 @@ class profiles(FlaskForm):
 
 
 class loginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Log In')
+    email1 = StringField('Email', validators=[DataRequired(), Email()])
+    password1 = PasswordField('Password', validators=[DataRequired()])
+    submit1 = SubmitField('Log In')
 
 
 class registrationForm(FlaskForm):
-    username = StringField('UserName', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), EqualTo(
+    username2 = StringField('UserName', validators=[DataRequired()])
+    email2 = StringField('Email', validators=[DataRequired(), Email()])
+    password2 = PasswordField('Password', validators=[DataRequired(), EqualTo(
         'pass_confirm', message='Passwords must match')])
     pass_confirm = PasswordField(
         'Confirm Password', validators=[DataRequired()])
-    submit = SubmitField('Register')
+    submit2 = SubmitField('Register')
 
     def check_email(self, field):
         if Users.query.filter_by(email=field.data).first():

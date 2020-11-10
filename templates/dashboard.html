@@ -90,13 +90,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST">
+        <form method="POST" id="transactionform">
           {{transForm.hidden_tag()}}
           <div class="form-group row">
             <div class="col-sm-10">
               {% for subfield in transForm.flow %}
               <tr >
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   
                     <td>{{ subfield }}</td>
                     <td>{{ subfield.label }}</td>
@@ -120,14 +122,14 @@
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Date</label>
             <div class="col-sm-10">
-              {{transForm.date(class='form-control')}}
+              {{transForm.date(class='datepicker form-control')}}
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        {{transForm.submit(class="btn btn-primary")}}
+        {{transForm.submit(class="btn btn-primary",form="transactionform")}}
       </div>
     </div>
   </div>

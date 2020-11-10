@@ -273,25 +273,25 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" id="loginform">
                             {{logForm.hidden_tag()}}
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                <label class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    {{logForm.email(class='form-control')}}
+                                    {{logForm.email1(class='form-control')}}
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                <label class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    {{logForm.password(class='form-control')}}
+                                    {{logForm.password1(class='form-control')}}
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        {{logForm.submit(class="btn btn-primary")}}
+                        {{logForm.submit1(class="btn btn-primary",form="loginform")}}
                     </div>
                 </div>
             </div>
@@ -310,31 +310,31 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" id="signupform">
                             {{signForm.hidden_tag()}}
                               <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                                <label class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
                                     <!-- <input type="text" class="form-control" id="staticEmail"> -->
-                                    {{signForm.username(class='form-control',required="required")}}
+                                    {{signForm.username2(class='form-control',required="required")}}
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                <label class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
                                     <!-- <input type="text" class="form-control" id="staticEmail"> -->
-                                    {{signForm.email(class="form-control")}}
+                                    {{signForm.email2(class="form-control")}}
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                <label class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
                                     <!-- <input type="password" class="form-control" id="inputPassword"> -->
-                                    {{signForm.password(class='form-control')}}
+                                    {{signForm.password2(class='form-control')}}
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+                                <label class="col-sm-2 col-form-label">Confirm Password</label>
                                 <div class="col-sm-10">
                                     <!-- <input type="password" class="form-control" id="inputPassword"> -->
                                     {{signForm.pass_confirm(class='form-control')}}
@@ -345,7 +345,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <!-- <button type="button" class="btn btn-primary">Sign Up</button> -->
-                        {{signForm.submit(class='btn btn-primary')}}
+                        {{signForm.submit2(class='btn btn-primary',form="signupform")}}
                     </div>
                 </div>
             </div>

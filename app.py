@@ -7,33 +7,33 @@ from models import Users
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    LoginForm = loginForm()
+
     RegistrationForm = registrationForm()
+    LoginForm = loginForm()
 
     if RegistrationForm.validate_on_submit():
-        user = Users(email=RegistrationForm.email.data,
-                     name=RegistrationForm.username.data, password=RegistrationForm.password.data)
+        user = Users(name=RegistrationForm.username2.data, email=RegistrationForm.email2.data,
+                     password=RegistrationForm.password2.data)
 
         db.session.add(user)
         db.session.commit()
-
         flash('Thanks for registeration!')
         return redirect(url_for('index'))
 
-    elif LoginForm.validate_on_submit():
-        user = Users.query.filter_by(email=LoginForm.email.data).first()
+    # if LoginForm.validate_on_submit():
+    #     user = Users.query.filter_by(email=LoginForm.email.data).first()
 
-        if user.check_password(LoginForm.password.data) and user is not None:
+    #     if user.check_password(LoginForm.password.data) and user is not None:
 
-            login_user(user)
-            flash('Log in Success!')
+    #         login_user(user)
+    #         flash('Log in Success!')
 
-            next = request.args.get('next')
+    #         next = request.args.get('next')
 
-            if next == None or not next[0] == '/':
-                next = url_for('dashboard')
+    #         if next == None or not next[0] == '/':
+    #             next = url_for('dashboard')
 
-            return redirect(next)
+    #         return redirect(next)
     return render_template('index.html', logForm=LoginForm, signForm=RegistrationForm)
 
 
