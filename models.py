@@ -16,12 +16,13 @@ class Users(db.Model, UserMixin):
     email = db.Column(db.String(64), unique=True, index=True)
     name = db.Column(db.String(64))
     pasword_hash = db.Column(db.String(128))
+    # pasword = db.Column(db.String(128))
     # posts = db.relationship('BlogPost', backref='author', lazy=True)
 
     def _init_(self, email, name, password):
         self.email = email
         self.name = name
-        self.pasword_hash = generate_password_hash(password)
+        self.pasword_hash = password
 
     def check_password(self, password):
         return check_password_hash(self.pasword_hash, password)

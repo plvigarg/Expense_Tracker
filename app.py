@@ -3,6 +3,7 @@ from flask import Flask, render_template, session, redirect, url_for
 from flask_login import login_user, logout_user, login_required, current_user
 from forms import loginForm, registrationForm, transactionForm, profiles
 from models import Users
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -12,28 +13,30 @@ def index():
     LoginForm = loginForm()
 
     if RegistrationForm.validate_on_submit():
-        user = Users(name=RegistrationForm.username2.data, email=RegistrationForm.email2.data,
-                     password=RegistrationForm.password2.data)
+        passw = generate_password_hash(RegistrationForm.password2.data)
+
+        user = Users(email=RegistrationForm.email2.data,
+                     name=RegistrationForm.username2.data, password=passw)
 
         db.session.add(user)
         db.session.commit()
-        flash('Thanks for registeration!')
+        print('Thanks for registeration!')
         return redirect(url_for('index'))
 
-    # if LoginForm.validate_on_submit():
-    #     user = Users.query.filter_by(email=LoginForm.email.data).first()
+    if LoginForm.validate_on_submit():
+        user = Users.query.filter_by(email=LoginForm.email1.data).first()
 
-    #     if user.check_password(LoginForm.password.data) and user is not None:
+        if user is not None and user.check_password(LoginForm.password1.data):
 
-    #         login_user(user)
-    #         flash('Log in Success!')
+            login_user(user)
+            flash('Log in Success!')
 
-    #         next = request.args.get('next')
+            next = request.args.get('next')
 
-    #         if next == None or not next[0] == '/':
-    #             next = url_for('dashboard')
+            if next == None or not next[0] == '/':
+                next = url_for('dashboard')
 
-    #         return redirect(next)
+            return redirect(next)
     return render_template('index.html', logForm=LoginForm, signForm=RegistrationForm)
 
 
