@@ -12,7 +12,7 @@ def load_user(user_id):
 
 class Users(db.Model, UserMixin):
 
-    __tablename__="users"
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
     name = db.Column(db.String(64))
@@ -35,14 +35,8 @@ class Transactions(db.Model):
     description = db.Column(db.String(64))
     cat = db.Column(db.String(64))
     date = db.Column(db.DateTime)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    def __init__(self, cashFlow, amount, description, cat, date):
-        self.cashFlow = cashFlow
-        self.amount = amount
-        self.description = description
-        self.cat = cat
-        self.date = date
 
     def _repr_(self):
         return f"amount : {self.amount}\
