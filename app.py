@@ -39,15 +39,20 @@ def index():
             return redirect(next)
     return render_template('index.html', logForm=LoginForm, signForm=RegistrationForm)
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 @app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     transForm = transactionForm()
 
     if transForm.validate_on_submit():
         print("In form")
         data = Transactions(cashFlow=transForm.flow.data,
-                     amount=transForm.amount.data, description=transForm.description.data,cat=transForm.category.data,date=transForm.date.data)
+                     amount=transForm.amount.data, description=transForm.description.data,cat=transForm.category.data,\
+                         date=transForm.date.data, userId=current_user.id)
 
         db.session.add(data)
         db.session.commit()
