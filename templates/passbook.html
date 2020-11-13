@@ -55,36 +55,21 @@
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle Menu</span>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-
-                            <li class="nav-item">
-                                <button class="btn btn-dark ml-auto d-inline-block" >Sign Out</button>
-                            </li>
-                        </ul>
-                    </div>
+                    
+                    <form action="search" , method="GET">
+                        <div class="container h-50">
+                            <div class="d-flex justify-content-center h-100">
+                                <input type="search" class="form-control ds-input" id="search-input" name="query" placeholder="Search..." aria-label="Search for..."
+                                    autocomplete="off" data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
+                                    aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
+                                    style="position: relative; vertical-align: top;">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </nav>
-            <form action="search" , method="GET">
-                <div class="container h-100">
-                    <div class="d-flex justify-content-center h-100">
-                        <input type="search" class="form-control ds-input" id="search-input" name="query" placeholder="Search..." aria-label="Search for..."
-                            autocomplete="off" data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
-                            aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
-                            style="position: relative; vertical-align: top;">
-                    </div>
-                </div>
-            </form>
-
+            
+            <br>
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
