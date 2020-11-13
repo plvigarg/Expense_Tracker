@@ -43,6 +43,9 @@
         </nav>
 
         <!-- Page Content  -->
+        
+        
+
         <div id="content" class="p-4 p-md-5">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -71,19 +74,46 @@
                     </div>
                 </div>
             </nav>
+            <form action="search" , method="GET">
+                <div class="container h-100">
+                    <div class="d-flex justify-content-center h-100">
+                        <input type="search" class="form-control ds-input" id="search-input" name="query" placeholder="Search..." aria-label="Search for..."
+                            autocomplete="off" data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
+                            aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
+                            style="position: relative; vertical-align: top;">
+                    </div>
+                </div>
+            </form>
 
-            <!-- <h2 class="mb-4">Sidebar #01</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
-        </div> -->
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Credit/Debit</th>
+                        <th scope="col">Date (d/m/y)</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for r in trans_data%}
+                    <tr>
+                        <th scope="row">{{loop.index0 + 1}}</th>
+                        <td>{{r.cat}}</td>
+                        <td>{{r.description}}</td>
+                        {%if r.cashFlow == 1 %}
+                        <td>Cash In</td>
+                        {%else%}
+                        <td>Cash Out</td>
+                        {%endif%}
+                        <td>{{r.date.strftime('%d-%m-%Y')}}</td>
+                        <td>{{r.amount}}</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 

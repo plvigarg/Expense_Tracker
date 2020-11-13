@@ -4,6 +4,8 @@ from flask_login import login_user, logout_user, login_required, current_user
 from forms import loginForm, registrationForm, transactionForm, profiles
 from models import Users, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_msearch import Search
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -69,11 +71,20 @@ def dashboard():
 
     return render_template('dashboard.html', transForm=transForm)
 
+search = Search()
+search.init_app(app)
+
+@app.route("/search")
+def search():
+    data = Transactions.query.msearch(request.args.get('query')).all()
+    return render_template('passbook.html',trans_data = data)
 
 @app.route('/passbook', methods=['GET', 'POST'])
 @login_required
 def passbook():
-    return render_template('passbook.html')
+    uid = current_user.id
+    trans_data = Transactions.query.filter_by(userId = uid).order_by(Transactions.date.desc())
+    return render_template('passbook.html', trans_data=trans_data)
 
 
 @app.route('/profile', methods=['GET', 'POST'])

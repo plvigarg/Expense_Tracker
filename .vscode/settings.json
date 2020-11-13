@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Python\\Python38\\python.exe"
+    "python.pythonPath": "c:\\Users\\asus\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "python.formatting.provider": "black"
 }

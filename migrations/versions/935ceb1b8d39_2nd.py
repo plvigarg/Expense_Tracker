@@ -1,8 +1,8 @@
-"""3rd try
+"""2nd
 
-Revision ID: df0a9663a291
+Revision ID: 935ceb1b8d39
 Revises: 
-Create Date: 2020-11-11 14:41:58.958609
+Create Date: 2020-11-13 21:10:05.448908
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'df0a9663a291'
+revision = '935ceb1b8d39'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,13 +28,13 @@ def upgrade():
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('cashFlow', sa.Boolean(), nullable=True),
+    sa.Column('cashFlow', sa.Integer(), nullable=True),
     sa.Column('amount', sa.Integer(), nullable=True),
     sa.Column('description', sa.String(length=64), nullable=True),
     sa.Column('cat', sa.String(length=64), nullable=True),
     sa.Column('date', sa.DateTime(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.Column('userId', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

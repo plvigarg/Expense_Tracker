@@ -28,9 +28,10 @@ class Users(db.Model, UserMixin):
 
 class Transactions(db.Model):
 
+    __searchable__ = ['description','cat','cashFlow','amount','date']
     users = db.relationship(Users)
     id = db.Column(db.Integer, primary_key=True)
-    cashFlow = db.Column(db.Boolean)
+    cashFlow = db.Column(db.Integer)
     amount = db.Column(db.Integer)
     description = db.Column(db.String(64))
     cat = db.Column(db.String(64))

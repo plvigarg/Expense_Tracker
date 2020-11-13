@@ -41,8 +41,8 @@ class transactionForm(FlaskForm):
     date = DateField('Date of Transaction', validators=[
                      DataRequired()], format='%d/%m/%Y', render_kw={'placeholder': '20/6/15 for June 20, 2015'})
     description = TextField('Description', validators=[DataRequired()])
-    flow = RadioField('', coerce=bool, choices=[
-                      (True, 'Cash In'), (False, 'Cash Out')], validators=[DataRequired()])
+    flow = RadioField('flow',coerce=int, choices=[
+                      (1, 'Cash In'), (2, 'Cash Out')], validators=[DataRequired()])
     submit = SubmitField('Add Transaction')
     category = SelectField(
         u'Category', choices=cats, validators=[DataRequired()])
