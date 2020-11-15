@@ -17,6 +17,9 @@ class Users(db.Model, UserMixin):
     email = db.Column(db.String(64), unique=True, index=True)
     name = db.Column(db.String(64))
     pasword_hash = db.Column(db.String(128))
+    income = db.Column(db.Integer)
+    budget = db.Column(db.Integer)
+    profile_image = db.Column(db.String(128), nullable=False, default='default_profile.png')
     trans = db.relationship('Transactions', backref='User', lazy='dynamic')
 
     def check_password(self, password):
@@ -28,7 +31,7 @@ class Users(db.Model, UserMixin):
 
 class Transactions(db.Model):
 
-    __searchable__ = ['description','cat','cashFlow','amount','date']
+    __searchable__ = ['description','cat','amount','date']
     users = db.relationship(Users)
     id = db.Column(db.Integer, primary_key=True)
     cashFlow = db.Column(db.Integer)

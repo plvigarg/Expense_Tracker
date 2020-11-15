@@ -5,6 +5,7 @@ from forms import loginForm, registrationForm, transactionForm, profiles
 from models import Users, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_msearch import Search
+from picture_handler import add_profile_pic
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -90,6 +91,19 @@ def search():
     return render_template("passbook.html", trans_data=data)
 
 
+@app.route("/<int:row_id>/delete", methods=["POST"])
+@login_required
+def delete(row_id):
+    delete__row = Transactions.query.get_or_404(row_id)
+    db.session.delete(delete__row)
+    db.session.commit()
+    print("Transaction deleted!")
+
+    return redirect(url_for("passbook"))
+
+
+
+
 @app.route("/passbook", methods=["GET", "POST"])
 @login_required
 def passbook():
@@ -103,8 +117,37 @@ def passbook():
 @app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
-    proForm = profiles()
-    return render_template("profile.html", proForm=proForm)
+
+    form = profiles()
+
+    if form.validate_on_submit():
+        print("in if")
+        if form.image.data:
+            print("image added")
+            username = current_user.id
+            image_data = current_user.profile_image
+            current_user.profile_image = 'default_profile.png'
+            db.session.commit()
+            pic = add_profile_pic(form.image.data, username, image_data)
+            current_user.profile_image = pic
+
+        current_user.budget = form.budget.data
+        current_user.income = form.income.data
+        db.session.commit()
+        print("User Account Updated")
+        return redirect(url_for("profile"))
+
+    elif request.method == "GET":
+        form.name.data = current_user.name
+        form.email.data = current_user.email
+        form.budget.data = current_user.budget
+        form.income.data = current_user.income
+        form.image.data = current_user.profile_image
+
+    profile_image = url_for(
+        "static", filename="profile_pics/" + current_user.profile_image
+    )
+    return render_template("profile.html", proForm=form, profile_image=profile_image)
 
 
 if __name__ == "__main__":
