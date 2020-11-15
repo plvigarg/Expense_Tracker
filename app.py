@@ -127,7 +127,7 @@ def profile():
             username = current_user.id
             image_data = current_user.profile_image
             print(image_data)
-            current_user.profile_image = 'default_profile.png'
+            current_user.profile_image = 'default_profile.jpeg'
             db.session.commit()
             pic = add_profile_pic(form.image.data, username, image_data)
             current_user.profile_image = pic

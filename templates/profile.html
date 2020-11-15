@@ -19,7 +19,7 @@
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">
-                <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(../static/images1/logo.jpg);"></a>
+                <a href="#" class="img logo rounded-circle mb-5" style="background-image: url({{url_for('static',filename='profile_pics/'+current_user.profile_image)}});"></a>
                 <ul class="list-unstyled components mb-5">
 
                     <li>
@@ -60,16 +60,10 @@
                 <div class="form-group row" >
                     
                     <div  style="margin: 0 auto 0" >
-                        <div class="form-group">
-                            <img class="rounded-circle" height="150px" width="150px"
-                                src="{{url_for('static',filename='profile_pics/'+current_user.profile_image)}}" />
-                            {{proForm.image.label(class='form-group')}}{{proForm.image(class='form-control')}}
-                        </div>
-                        <!-- <label for="file-input">
+                        <label for="file-input">
                            <img class="rounded-circle" height="150px" width="150px" src="{{url_for('static',filename='profile_pics/'+current_user.profile_image)}}" />
                         </label>
-                        {{proForm.image(style="display:none;", id="file-input")}} -->
-                        
+                        {{proForm.image(style="display:none;", id="file-input")}}
                     </div>
                 </div>
                 <div class="form-group row">
