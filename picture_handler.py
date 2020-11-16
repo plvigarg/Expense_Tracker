@@ -9,7 +9,7 @@ def add_profile_pic(pic_upload, username, image_data):
     print("in add_profile_pic")
     filename = pic_upload.filename
     ext_type = filename.split('.')[-1]
-    storage_filename = str(username)+ str(randint(0,100)) +'.'+ext_type
+    storage_filename = str(username)+"_"+ str(randint(0,100)) +'.'+ext_type
     storage_filename1 = str(username)+ str(randint(0,100)) #check
     image_data1 = image_data.split('.')[:-1] #check
     print(*image_data1)
