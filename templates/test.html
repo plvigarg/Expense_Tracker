@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My First Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 </head>
 <body>
-    {% if current_user.is_authenticated %}
-    Hi {{ current_user.id }}!
-    {% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="chart" id="bargraph2">
+                <script>
+                    var graphs = {{plot | safe}};
+                    Plotly.plot('bargraph2',graphs,{});
+                </script>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="chart" id="bargraph">
+                <script>
+                    var graphs = {{plot | safe}};
+                    Plotly.plot('bargraph',graphs,{});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

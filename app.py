@@ -6,6 +6,7 @@ from models import Users, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_msearch import Search
 from picture_handler import add_profile_pic
+from graphs import create_plot
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -45,9 +46,10 @@ def index():
     return render_template("index.html", logForm=LoginForm, signForm=RegistrationForm)
 
 
-# @app.route('/test')
-# def test():
-#     return render_template('test.html')
+@app.route("/test")
+def test():
+    bar = create_plot()
+    return render_template("test.html", plot=bar)
 
 
 @app.route("/logout")
@@ -102,8 +104,6 @@ def delete(row_id):
     return redirect(url_for("passbook"))
 
 
-
-
 @app.route("/passbook", methods=["GET", "POST"])
 @login_required
 def passbook():
@@ -127,7 +127,7 @@ def profile():
             username = current_user.id
             image_data = current_user.profile_image
             print(image_data)
-            current_user.profile_image = 'default_profile.jpeg'
+            current_user.profile_image = "default_profile.jpeg"
             db.session.commit()
             pic = add_profile_pic(form.image.data, username, image_data)
             current_user.profile_image = pic
