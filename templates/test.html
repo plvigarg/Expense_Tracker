@@ -8,23 +8,18 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="chart" id="bargraph2">
+            <div class="chart" id="bargraph2" style="display: inline-block;width: 50%;">
                 <script>
                     var graphs = {{plot | safe}};
                     Plotly.plot('bargraph2',graphs,{});
                 </script>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="chart" id="bargraph">
+            <div class="chart" id="bargraph" style="display: inline-block; width: 40%;">
                 <script>
                     var graphs = {{plot | safe}};
                     Plotly.plot('bargraph',graphs,{});
                 </script>
             </div>
-        </div>
     </div>
 </div>
 
