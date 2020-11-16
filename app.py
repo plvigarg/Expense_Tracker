@@ -60,9 +60,9 @@ def logout():
 @app.route("/dashboard", methods=["GET", "POST"])
 @login_required
 def dashboard():
-    uid = current_user.id
-    print(uid)
-    print(type(uid))
+    # uid = current_user.id
+    # print(uid)
+    # print(type(uid))
     transForm = transactionForm()
     bar = ghaint_chart()
 
