@@ -7,8 +7,6 @@ import json
 from ghaint_chart import xyfunc
 
 
-
-
 def create_plot():
 
     N = 40
@@ -44,10 +42,11 @@ def ghaint_chart():
             # textinfo="label+percent",
             # insidetextorientation="radial",
             hole=0.4,
-            name="CO2 Emissions",
+            title="This Months expenses",
         )
     ]  # assign x as the dataframe column 'x'
 
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
 
     return graphJSON
+
