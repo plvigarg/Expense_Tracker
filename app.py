@@ -6,7 +6,7 @@ from models import Users, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_msearch import Search
 from picture_handler import add_profile_pic
-from graphs import ghaint_chart, testchart
+from graphs import ghaint_chart
 
 
 @app.route("/", methods=["GET", "POST"])
