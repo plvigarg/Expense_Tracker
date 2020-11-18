@@ -24,7 +24,7 @@ def xyfunc():
     y_axis = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     uid = current_user.id
     for obj in Transactions.query.filter_by(userId=uid, cashFlow=2).all():
-        if obj.date.month == today.month:
+        if obj.date.year == today.year and obj.date.month == today.month:
             if obj.cat == x_axis[0]:
                 y_axis[0] += obj.amount
             elif obj.cat == x_axis[1]:

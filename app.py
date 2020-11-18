@@ -6,7 +6,7 @@ from models import Users, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_msearch import Search
 from picture_handler import add_profile_pic
-from graphs import ghaint_chart,baseGraph
+from graphs import ghaint_chart, baseGraph, baseGraph2, savingGraph
 from datetime import datetime
 
 today = datetime.today()
@@ -69,6 +69,10 @@ def dashboard():
     transForm = transactionForm()
     bar = ghaint_chart()
     line = baseGraph()
+    line2 = baseGraph2()
+    line3 = savingGraph()
+    
+    
 
 
     if transForm.validate_on_submit():
@@ -88,7 +92,7 @@ def dashboard():
         print("data send")
         return redirect(url_for("dashboard"))
 
-    return render_template("dashboard.html", transForm=transForm, plot=bar, plot2=line)
+    return render_template("dashboard.html", transForm=transForm, plot=bar, plot2=line, plot3=line2, plot4=line3)
 
 
 search = Search()

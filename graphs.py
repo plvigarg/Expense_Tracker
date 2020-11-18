@@ -5,12 +5,41 @@ import pandas as pd
 import numpy as np
 import json
 from ghaint_chart import xyfunc
-from basicGraph import basic_graph
+from basicGraph import basic_graph, basic_graph2
+from savingsGraph import savings
+
+
+def savingGraph():
+
+    x, y = savings()
+    df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
+
+    data = [
+        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="lines")
+    ]  # assign x as the dataframe column 'x'
+
+    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return graphJSON
 
 
 def baseGraph():
 
     x, y = basic_graph()
+    df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
+
+    data = [
+        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="lines")
+    ]  # assign x as the dataframe column 'x'
+
+    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return graphJSON
+
+
+def baseGraph2():
+
+    x, y = basic_graph2()
     df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
 
     data = [

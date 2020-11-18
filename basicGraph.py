@@ -8,17 +8,18 @@ import numpy as np
 today = datetime.today()
 
 
-# def total_value(mydate):
-#     amount = 0
-#     uid = current_user.id
-#     for obj in Transactions.query.filter_by(UserId = uid).all():
-#         if mydate<=today:
-#             if obj.cashFlow == 1:
-#                 amount += obj.amount
-#             if obj.cashFlow == 2:
-#                 amount -= obj.amount
 
-#     return amount
+
+
+def expenditure(mydate):
+    amount = 0
+    uid = current_user.id
+    for obj in Transactions.query.filter_by(userId = uid).all():
+        if obj.date.year == today.year and obj.date.month == today.month and obj.date.day <= mydate:
+            if obj.cashFlow == 2:
+                amount += obj.amount
+
+    return amount
 
 
 
@@ -29,8 +30,19 @@ def basic_graph():
 
     uid = current_user.id
     for obj in Transactions.query.filter_by(userId = uid).all():
-        if obj.date.month == today.month:
+        if obj.date.year == today.year and obj.date.month == today.month and obj.cashFlow == 2:
             y[obj.date.day] += obj.amount
+    
+    return x,y
+
+
+def basic_graph2():
+
+    x = np.arange(31)
+    y = [0]*31
+
+    for xi in x:
+        y[xi] = expenditure(xi)
     
     return x,y
 
