@@ -8,10 +8,30 @@ import numpy as np
 today = datetime.today()
 
 def expenditure(mydate):
+    if mydate == 0:
+        mydate =12
+
+    
+
     amount = 0
     uid = current_user.id
     for obj in Transactions.query.filter_by(userId = uid).all():
         if obj.date.year == today.year and obj.date.month == mydate:
+            if obj.cashFlow == 2:
+                amount += obj.amount
+
+    return amount
+
+def expenditure2(mydate):
+    if mydate == 0:
+        mydate =12
+
+    
+
+    amount = 0
+    uid = current_user.id
+    for obj in Transactions.query.filter_by(userId = uid).all():
+        if obj.date.year == today.year and obj.date.month <= mydate:
             if obj.cashFlow == 2:
                 amount += obj.amount
 
@@ -24,22 +44,27 @@ def expenditure(mydate):
 def savings():
 
     month = today.month
-    # if today.month == 1:
-    #     def bug():
-    #        array = [0]*12
-    #        return array
 
-    #     budget_array = bug()
-
-
-    # budget_array[month] = current_user.budget
-
-    # budget = current_user.budget
-
-    x = np.arange(12)
+    x = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
     y = [0]*12
 
-    for xi in x:
-        y[xi] = current_user.budget - expenditure(xi)
+    for idx, xi in enumerate(x):
+        y[idx] = current_user.budget - expenditure(idx+1)
+    
+    return x,y
+
+
+def savings2():
+
+    month = today.month
+
+    x = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    y = [0]*12
+
+    for idx, xi in enumerate(x):
+        # saved = current_user.budget - expenditure(idx)
+
+        
+        y[idx] = current_user.budget*(idx+1) - expenditure2(idx+1)
     
     return x,y

@@ -59,15 +59,21 @@
         </nav>
 
         <div class="container">
-          <div class="chart" id="catChart" style="display: inline-block;width: 49%">
+          <div class="chart" id="catChart" style="display: inline-block;width: 44%">
             <script>
               var graphs = {{ plot | safe}};
               Plotly.plot('catChart', graphs, {});
             </script>
           </div>
-          <div class="chart" id="savingGraph" style="display: inline-block;width: 49%">
+          <div class="chart" id="savingGraph" style="display: inline-block;width: 55%">
             <script>
               var graphs = {{ plot4 | safe}};
+              Plotly.plot('savingGraph', graphs, {});
+            </script>
+          </div>
+          <div class="chart" id="savingGraph" style="display: inline-block;width: 55%">
+            <script>
+              var graphs = {{ plot5 | safe}};
               Plotly.plot('savingGraph', graphs, {});
             </script>
           </div>

@@ -6,7 +6,7 @@ import numpy as np
 import json
 from ghaint_chart import xyfunc
 from basicGraph import basic_graph, basic_graph2
-from savingsGraph import savings
+from savingsGraph import savings, savings2
 
 
 def savingGraph():
@@ -15,7 +15,21 @@ def savingGraph():
     df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
 
     data = [
-        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="lines")
+        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="Monthly")
+    ]  # assign x as the dataframe column 'x'
+
+    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return graphJSON
+
+
+def savingGraph2():
+
+    x, y = savings2()
+    df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
+
+    data = [
+        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="Aggregate")
     ]  # assign x as the dataframe column 'x'
 
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
@@ -29,7 +43,7 @@ def baseGraph():
     df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
 
     data = [
-        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="lines")
+        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="Daily")
     ]  # assign x as the dataframe column 'x'
 
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
@@ -43,7 +57,7 @@ def baseGraph2():
     df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
 
     data = [
-        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="lines")
+        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="Aggregate")
     ]  # assign x as the dataframe column 'x'
 
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
