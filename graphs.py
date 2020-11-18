@@ -5,24 +5,16 @@ import pandas as pd
 import numpy as np
 import json
 from ghaint_chart import xyfunc
+from basicGraph import basic_graph
 
 
-def create_plot():
+def baseGraph():
 
-    N = 40
-    x = np.linspace(0, 1, N)
-    y = np.random.randn(N)
+    x, y = basic_graph()
     df = pd.DataFrame({"x": x, "y": y})  # creating a sample dataframe
 
     data = [
-        go.Pie(
-            labels=df["x"],
-            values=df["y"],
-            # textinfo="label+percent",
-            insidetextorientation="radial",
-            hole=0.3,
-            name="CO2 Emissions",
-        )
+        go.Scatter(x=df["x"], y=df["y"], mode="lines", name="lines")
     ]  # assign x as the dataframe column 'x'
 
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
@@ -49,4 +41,3 @@ def ghaint_chart():
     graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
 
     return graphJSON
-

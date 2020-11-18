@@ -21,9 +21,7 @@ db = SQLAlchemy(app)
 Migrate(app, db)
 
 
-##########################
 #### LOGIN CONFIGS #######
-#########################
 
 login_manager = LoginManager()
 

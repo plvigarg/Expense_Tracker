@@ -6,7 +6,6 @@ from sqlalchemy import func
 
 today = datetime.today()
 
-# uid = current_user.id
 
 
 def xyfunc():

@@ -14,7 +14,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
   </head>
-  <body>
+  <body style="overflow-x: hidden;">
 		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
@@ -63,6 +63,12 @@
             <script>
               var graphs = {{ plot | safe}};
               Plotly.plot('catChart', graphs, {});
+            </script>
+          </div>
+          <div class="chart" id="baseGraph" style="display: inline-block;width: 100%">
+            <script>
+              var graphs = {{ plot2 | safe}};
+              Plotly.plot('baseGraph', graphs, {});
             </script>
           </div>
         </div>

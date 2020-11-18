@@ -6,7 +6,11 @@ from models import Users, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_msearch import Search
 from picture_handler import add_profile_pic
-from graphs import ghaint_chart
+from graphs import ghaint_chart,baseGraph
+from datetime import datetime
+
+today = datetime.today()
+now = datetime.now()
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -58,14 +62,14 @@ def logout():
     return redirect(url_for("index"))
 
 
+
 @app.route("/dashboard", methods=["GET", "POST"])
 @login_required
 def dashboard():
-    # uid = current_user.id
-    # print(uid)
-    # print(type(uid))
     transForm = transactionForm()
     bar = ghaint_chart()
+    line = baseGraph()
+
 
     if transForm.validate_on_submit():
         print("In form")
@@ -84,7 +88,7 @@ def dashboard():
         print("data send")
         return redirect(url_for("dashboard"))
 
-    return render_template("dashboard.html", transForm=transForm, plot=bar)
+    return render_template("dashboard.html", transForm=transForm, plot=bar, plot2=line)
 
 
 search = Search()
