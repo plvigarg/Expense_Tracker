@@ -21,18 +21,25 @@ def index():
     LoginForm = loginForm()
 
     if RegistrationForm.validate_on_submit():
-        passw = generate_password_hash(RegistrationForm.password2.data)
+        user = Users.query.filter_by(email=RegistrationForm.email2.data).first()
 
-        user = Users(
-            email=RegistrationForm.email2.data,
-            name=RegistrationForm.username2.data,
-            pasword_hash=passw,
-        )
+        if user is not None:
+            flash("Email Id already registered!")
 
-        db.session.add(user)
-        db.session.commit()
-        print("Thanks for registeration!")
-        return redirect(url_for("index"))
+        else:
+
+            passw = generate_password_hash(RegistrationForm.password2.data)
+
+            user = Users(
+                email=RegistrationForm.email2.data,
+                name=RegistrationForm.username2.data,
+                pasword_hash=passw,
+            )
+
+            db.session.add(user)
+            db.session.commit()
+            print("Thanks for registeration!")
+            return redirect(url_for("index"))
 
     if LoginForm.validate_on_submit():
         user = Users.query.filter_by(email=LoginForm.email1.data).first()
@@ -130,7 +137,7 @@ def delete(row_id):
     delete__row = Transactions.query.get_or_404(row_id)
     db.session.delete(delete__row)
     db.session.commit()
-    print("Transaction deleted!")
+    flash("Transaction deleted!")
 
     return redirect(url_for("passbook"))
 
@@ -166,7 +173,7 @@ def profile():
         current_user.budget = form.budget.data
         current_user.income = form.income.data
         db.session.commit()
-        print("User Account Updated")
+        flash("User Account Updated")
         return redirect(url_for("profile"))
 
     elif request.method == "GET":
