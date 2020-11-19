@@ -13,9 +13,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css1/style.css') }}">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    
+    
   </head>
   <body style="overflow-x: hidden;">
-		
+
+    
+  
+
+
+
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
@@ -55,6 +62,9 @@
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
+            {% for mesg in get_flashed_messages() %}
+            <h4 style="margin: auto;">{{mesg}}</h4>
+            {% endfor %}
          
             <button class="btn btn-dark ml-auto d-inline-block" data-toggle="modal" data-target="#transaction">Add Transaction</button>
 
@@ -188,8 +198,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        {{transForm.submit(class="btn btn-primary",form="transactionform",id="trans",onsubmit="alert('thank you')")}}
+        <button type="button" data-target="#flashModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        {{transForm.submit(class="btn btn-primary",form="transactionform",id="trans")}}
       </div>
     </div>
   </div>
@@ -199,5 +209,6 @@
     <script src="{{ url_for('static', filename='js1/popperjs') }}"></script>
     <script src="{{ url_for('static', filename='js1/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js1/main.js') }}"></script>
+    
   </body>
 </html>

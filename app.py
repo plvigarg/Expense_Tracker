@@ -1,5 +1,5 @@
 from connect import app, db
-from flask import Flask, render_template, session, redirect, url_for, request
+from flask import Flask, render_template, session, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from forms import loginForm, registrationForm, transactionForm, profiles
 from models import Users, Transactions
@@ -31,7 +31,7 @@ def index():
 
         db.session.add(user)
         db.session.commit()
-        print("Thanks for registeration!")
+        flash("Thanks for registeration!")
         return redirect(url_for("index"))
 
     if LoginForm.validate_on_submit():
@@ -40,7 +40,7 @@ def index():
         if user is not None and user.check_password(LoginForm.password1.data):
 
             login_user(user)
-            # flash('Log in Success!')
+            flash('Log in Success!')
 
             next = request.args.get("next")
 
@@ -60,6 +60,7 @@ def index():
 @app.route("/logout")
 def logout():
     logout_user()
+    flash('Successfully logged out')
     return redirect(url_for("index"))
 
 
@@ -88,7 +89,7 @@ def dashboard():
 
         db.session.add(data)
         db.session.commit()
-        # flash()
+        flash('Transaction added')
         print("data send")
         return redirect(url_for("dashboard"))
 
@@ -121,7 +122,7 @@ def delete(row_id):
     delete__row = Transactions.query.get_or_404(row_id)
     db.session.delete(delete__row)
     db.session.commit()
-    print("Transaction deleted!")
+    flash("Transaction deleted!")
 
     return redirect(url_for("passbook"))
 
@@ -143,9 +144,7 @@ def profile():
     form = profiles()
 
     if form.validate_on_submit():
-        print("in if")
         if form.image.data:
-            print("image added")
             username = current_user.id
             image_data = current_user.profile_image
             print(image_data)
@@ -157,7 +156,7 @@ def profile():
         current_user.budget = form.budget.data
         current_user.income = form.income.data
         db.session.commit()
-        print("User Account Updated")
+        flash("User Account Updated")
         return redirect(url_for("profile"))
 
     elif request.method == "GET":

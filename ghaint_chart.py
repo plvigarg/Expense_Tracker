@@ -36,7 +36,7 @@ def xyfunc():
             elif obj.cat == x_axis[4]:
                 y_axis[4] += obj.amount
             elif obj.cat == x_axis[5]:
-                y_axis[5] += ojb.amount
+                y_axis[5] += obj.amount
             elif obj.cat == x_axis[6]:
                 y_axis[6] += obj.amount
             elif obj.cat == x_axis[7]:
