@@ -8,6 +8,7 @@ from flask_msearch import Search
 from picture_handler import add_profile_pic
 from graphs import ghaint_chart, baseGraph, baseGraph2, savingGraph, savingGraph2
 from datetime import datetime
+from values import totalBal, leftBal
 
 today = datetime.today()
 now = datetime.now()
@@ -62,7 +63,6 @@ def logout():
     return redirect(url_for("index"))
 
 
-
 @app.route("/dashboard", methods=["GET", "POST"])
 @login_required
 def dashboard():
@@ -72,8 +72,8 @@ def dashboard():
     line2 = baseGraph2()
     line3 = savingGraph()
     line4 = savingGraph2()
-    
-
+    TotalBal = totalBal()
+    LeftBal = leftBal()
 
     if transForm.validate_on_submit():
         print("In form")
@@ -92,7 +92,17 @@ def dashboard():
         print("data send")
         return redirect(url_for("dashboard"))
 
-    return render_template("dashboard.html", transForm=transForm, plot=bar, plot2=line, plot3=line2, plot4=line3, plot5=line4)
+    return render_template(
+        "dashboard.html",
+        transForm=transForm,
+        plot=bar,
+        plot2=line,
+        plot3=line2,
+        plot4=line3,
+        plot5=line4,
+        totalBal=TotalBal,
+        leftBal=LeftBal,
+    )
 
 
 search = Search()
