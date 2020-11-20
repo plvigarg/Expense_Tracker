@@ -38,7 +38,7 @@ def index():
 
             db.session.add(user)
             db.session.commit()
-            print("Thanks for registeration!")
+            flash("Thanks for registeration! Login to continue")
             return redirect(url_for("index"))
 
     if LoginForm.validate_on_submit():
