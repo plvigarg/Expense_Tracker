@@ -65,6 +65,11 @@ def index():
     return render_template("index.html", logForm=LoginForm, signForm=RegistrationForm)
 
 
+@app.route("/instructions")
+def instructions():
+    return render_template("instructions.html")
+
+
 # @app.route("/test")
 # def test():
 #     bar = testchart()
@@ -105,8 +110,8 @@ def dashboard():
         flash("Transaction added successfully!")
         print("data send")
         return redirect(url_for("dashboard"))
-    elif not transForm.validate_on_submit():
-        flash("Some error occured! Make sure you have filled all feilds correctly")
+    # elif not transForm.validate_on_submit():
+    #     flash("Some error occured! Make sure you have filled all feilds correctly")
 
     return render_template(
         "dashboard.html",
@@ -161,10 +166,10 @@ def profile():
     if form.validate_on_submit():
         print("in if")
         if form.image.data:
-            print("image added")
+            # print("image added")
             username = current_user.id
             image_data = current_user.profile_image
-            print(image_data)
+            # print(image_data)
             current_user.profile_image = "default_profile.jpeg"
             db.session.commit()
             pic = add_profile_pic(form.image.data, username, image_data)

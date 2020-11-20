@@ -18,9 +18,11 @@ class Users(db.Model, UserMixin):
     name = db.Column(db.String(64))
     pasword_hash = db.Column(db.String(128))
     income = db.Column(db.Integer)
-    budget = db.Column(db.Integer)
-    profile_image = db.Column(db.String(128), nullable=False, default='default_profile.png')
-    trans = db.relationship('Transactions', backref='User', lazy='dynamic')
+    budget = db.Column(db.Integer, default=0)
+    profile_image = db.Column(
+        db.String(128), nullable=False, default="default_profile.jpeg"
+    )
+    trans = db.relationship("Transactions", backref="User", lazy="dynamic")
 
     def check_password(self, password):
         return check_password_hash(self.pasword_hash, password)
@@ -31,7 +33,7 @@ class Users(db.Model, UserMixin):
 
 class Transactions(db.Model):
 
-    __searchable__ = ['description','cat','amount','date']
+    __searchable__ = ["description", "cat", "amount", "date"]
     users = db.relationship(Users)
     id = db.Column(db.Integer, primary_key=True)
     cashFlow = db.Column(db.Integer)
@@ -39,8 +41,7 @@ class Transactions(db.Model):
     description = db.Column(db.String(64))
     cat = db.Column(db.String(64))
     date = db.Column(db.DateTime)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-
+    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     def _repr_(self):
         return f"amount : {self.amount}\
