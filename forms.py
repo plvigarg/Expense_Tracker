@@ -10,7 +10,7 @@ class profiles(FlaskForm):
     name = StringField('Name')
     email = StringField('Email')
     image = FileField('Update Image', validators=[
-                      FileAllowed(['jpg', 'png', 'jpeg'])])
+                      FileAllowed(['jpg', 'png', 'jpeg','jfif'])])
     budget = IntegerField('Monthly Budget', validators=[DataRequired()])
     income = IntegerField('Monthly Income', validators=[DataRequired()])
     submit = SubmitField('Update')
