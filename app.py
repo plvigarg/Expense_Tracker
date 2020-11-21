@@ -47,7 +47,7 @@ def index():
         if user is not None and user.check_password(LoginForm.password1.data):
 
             login_user(user)
-            # flash('Log in Success!')
+            # flash('Log in Success')
 
             next = request.args.get("next")
 
