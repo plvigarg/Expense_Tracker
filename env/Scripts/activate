@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Pallavi\Desktop\Expense_Tracker\env"
+VIRTUAL_ENV="C:\Users\knvga\Desktop\Projects\Expense_Tracker\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
